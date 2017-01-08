@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+
+  # Root
+  root :to => 'point_clouds#index'
+
+  # Base REST-ful Routes
+  post '/point_clouds/:id' => 'point_cloud#update' , constraints: { id: /[0-9]+/ }
+  resources :point_clouds                          , constraints: { id: /[0-9]+/ }
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

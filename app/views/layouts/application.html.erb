@@ -15,6 +15,7 @@
 </head>
 <body>
   <div class="container grid-960">
+    <%= render partial: "layouts/navbar", locals: { point_cloud: @point_cloud } %>
     <%= yield %>
   </div>
 </body>

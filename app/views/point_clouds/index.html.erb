@@ -1,0 +1,66 @@
+<div class="columns">
+  <div class="column col-8" style="padding:15px;">
+    <h3>PointClouds</h3>
+  </div>
+  <div class="column col-4" style="margin-top:30px;padding:15px;">
+    
+  </div>
+</div>
+<% if @point_clouds.empty? %>
+  <div class="columns">
+    <div class="column col-12" style="padding:0 15px;">
+      <h1>No PointClouds</h1>
+    </div>
+  </div>
+<% else %>
+  <% @point_clouds.each_slice(4).each do |point_cloud_row| %>
+    <div class="columns">
+      <% point_cloud_row.each do |point_cloud| %>
+        <div class="column col-3" style="padding:15px;">
+          <a href="/point_clouds/<%= point_cloud.id %>" style="text-decoration:none;">
+            <div class="card" style="position:relative">
+              <div class="card-body">
+                <div style="font-size:20px;position:absolute;top:8px;right:12px;">#<%= point_cloud.id %></div>
+                <div><%= point_cloud.name %></div>
+                <div><%= point_cloud.data %></div>
+                <div>@ <%= point_cloud.created_at.strftime("%F %T") %></div>
+              </div>
+            </div>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+<div class="divider"></div>
+<div class="columns">
+  <div class="column col-12" style="padding:15px;">
+    <form action="/point_clouds" method="POST">
+      <div class="form-group" align="right">
+        <div class="columns">
+          <div class="column col-8" style="text-align:left;">
+            <div><span style="font-size:15px;">or ... </span><span style="font-size:20px;">New PointCloud</span></div>
+          </div>
+          <div class="column col-4">
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="name" style="font-weight:bold;padding:5px 0px;">Name</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="PointCloud Name"/>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="data" style="font-weight:bold;padding:5px 0px;">PointCloud Data</label>
+        <textarea class="form-input" id="data" name="data" placeholder="x y z x y z ..." rows="30"></textarea>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="divider"></div>
+<h4>Open Source References</h4>
+<h6>Spectre CSS : <a href="https://picturepan2.github.io/spectre/">https://picturepan2.github.io/spectre/</a></h6>
+<h6>Material Icons : <a href="https://zavoloklom.github.io/material-design-iconic-font/">https://zavoloklom.github.io/material-design-iconic-font/</a></h6>
+<h6>3D Renderer : <a href="https://github.com/mrdoob/three.js">https://github.com/mrdoob/three.js</a></h6>

@@ -1,0 +1,24 @@
+<ul class="tab tab-block">
+  <%# Home %>
+  <li class="tab-item active">
+    <a href="/"><%= "Home" %></a>
+  </li>
+  <%# PointCloud %>
+  <% if point_cloud.nil? %>
+    <li class="tab-item">
+      <a href="/point_clouds">PointClouds</a>
+    </li>
+  <% else %>
+    <li class="tab-item active">
+      <a href="/point_clouds/<%= point_cloud.id %>">PointCloud#<%= point_cloud.id %></a>
+    </li>
+  <% end %>
+  <%# Render %>
+  <li class="tab-item">
+    <% if point_cloud.nil? %>
+      <a href="#" disabled>Render in 3D</a>
+    <% else %>
+      <a href="/point_clouds/<%= point_cloud.id %>">Viewer</a>
+    <% end %>
+  </li>
+</ul>
